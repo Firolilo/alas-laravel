@@ -71,6 +71,18 @@
                             <p>Fire Risk Data</p>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a href="{{ route('lugares.index') }}" class="nav-link">
+                            <i class="nav-icon fas fa-map-marker-alt"></i>
+                            <p>Lugares</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('biomasas.index') }}" class="nav-link">
+                            <i class="nav-icon fas fa-leaf"></i>
+                            <p>Biomasas</p>
+                        </a>
+                    </li>
                 </ul>
             </nav>
             <!-- /.sidebar-menu -->
