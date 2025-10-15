@@ -14,6 +14,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ttskch/select2-bootstrap4-theme@x.x.x/dist/select2-bootstrap4.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2.0/dist/css/adminlte.min.css">
+    <!-- Leaflet (AdminLTE examples) -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -23,24 +25,43 @@
         <img class="animation__shake" src="https://adminlte.io/themes/v3/dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
     </div>
 
-    <!-- Navbar -->
-    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-        <!-- Left navbar links -->
+    <!-- Navbar: barra superior estilo AdminLTE v3 (solo maquetación) -->
+    <nav class="main-header navbar navbar-expand navbar-dark navbar-maroon">
+        <!-- Bloque izquierdo: toggler + marca + navegación principal -->
         <ul class="navbar-nav">
+            <!-- Botón para mostrar/ocultar el sidebar -->
             <li class="nav-item">
-                <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+                <a class="nav-link" data-widget="pushmenu" href="#" role="button" aria-label="Abrir menú lateral"><i class="fas fa-bars"></i></a>
+            </li>
+            <!-- Marca del sistema -->
+            <li class="nav-item d-none d-sm-inline-block">
+                <span class="nav-link text-uppercase font-weight-bold" aria-label="Nombre de la aplicación">SIPII</span>
+            </li>
+            <!-- Ítems de navegación principales -->
+            <li class="nav-item d-none d-sm-inline-block">
+                <a href="{{ url('/') }}" class="nav-link active" aria-current="page">Inicio</a>
             </li>
             <li class="nav-item d-none d-sm-inline-block">
-                <a href="/" class="nav-link">Home</a>
+                <a href="{{ route('datos.index') }}" class="nav-link">Datos</a>
+            </li>
+            <li class="nav-item d-none d-sm-inline-block">
+                <a href="{{ route('simulacion.index') }}" class="nav-link" aria-label="Simulación">Simulación</a>
+            </li>
+            <li class="nav-item d-none d-sm-inline-block">
+                <a href="#" class="nav-link" aria-label="Reporte">Reporte</a>
+            </li>
+            <li class="nav-item d-none d-sm-inline-block">
+                <a href="{{ route('users.index') }}" class="nav-link">Usuarios</a>
             </li>
         </ul>
 
-        <!-- Right navbar links -->
+        <!-- Bloque derecho: información de usuario + acción de sesión -->
         <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-                <a class="nav-link" data-widget="fullscreen" href="#" role="button">
-                    <i class="fas fa-expand-arrows-alt"></i>
-                </a>
+            <li class="nav-item d-none d-sm-inline-block">
+                <span class="nav-link font-weight-bold text-uppercase" aria-label="Rol del usuario">ADMIN</span>
+            </li>
+            <li class="nav-item d-none d-sm-inline-block">
+                <a href="#" class="nav-link" tabindex="0" aria-label="Cerrar sesión">Cerrar sesión</a>
             </li>
         </ul>
     </nav>
@@ -69,6 +90,18 @@
                         <a href="{{ route('fire_risk_data.index') }}" class="nav-link">
                             <i class="nav-icon fas fa-fire"></i>
                             <p>Fire Risk Data</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('lugares.index') }}" class="nav-link">
+                            <i class="nav-icon fas fa-map-marker-alt"></i>
+                            <p>Lugares</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('biomasas.index') }}" class="nav-link">
+                            <i class="nav-icon fas fa-leaf"></i>
+                            <p>Biomasas</p>
                         </a>
                     </li>
                 </ul>
@@ -129,5 +162,8 @@
     });
 </script>
 <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.2.0/dist/js/adminlte.min.js"></script>
+<!-- Leaflet -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+@stack('scripts')
 </body>
 </html>

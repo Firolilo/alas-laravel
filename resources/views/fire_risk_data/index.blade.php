@@ -1,17 +1,30 @@
 @extends('layouts.app')
 
+@section('title', 'Fire Risk Data')
+
 @section('content')
 <div class="card">
-    <div class="card-header d-flex justify-content-between align-items-center">
-        <h3 class="card-title">Fire Risk Data</h3>
-        <a class="btn btn-primary" href="{{ route('fire_risk_data.create') }}">Crear registro</a>
+    <div class="card-header">
+        <h3 class="card-title">
+            <i class="fas fa-fire mr-2"></i>Fire Risk Data
+        </h3>
+        <div class="card-tools">
+            <a href="{{ route('fire_risk_data.create') }}" class="btn btn-primary">
+                <i class="fas fa-plus mr-1"></i>Nuevo Registro
+            </a>
+        </div>
     </div>
     <div class="card-body">
         @if(session('success'))
-            <div class="alert alert-success">{{ session('success') }}</div>
+            <div class="alert alert-success alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <h5><i class="icon fas fa-check"></i> ¡Éxito!</h5>
+                {{ session('success') }}
+            </div>
         @endif
 
-        <table class="table table-striped table-bordered">
+        <div class="table-responsive">
+            <table class="table table-hover">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -37,12 +50,18 @@
                         <td>{{ $item->fire_detected ? 'Yes' : 'No' }}</td>
                         <td>{{ optional($item->coordinate)->lat }}, {{ optional($item->coordinate)->lng }}</td>
                         <td>
-                            <a class="btn btn-sm btn-info" href="{{ route('fire_risk_data.show', $item) }}">Ver</a>
-                            <a class="btn btn-sm btn-warning" href="{{ route('fire_risk_data.edit', $item) }}">Editar</a>
-                            <form action="{{ route('fire_risk_data.destroy', $item) }}" method="POST" style="display:inline-block">
+                            <a href="{{ route('fire_risk_data.show', $item) }}" class="btn btn-info btn-sm">
+                                <i class="fas fa-eye"></i>
+                            </a>
+                            <a href="{{ route('fire_risk_data.edit', $item) }}" class="btn btn-warning btn-sm">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <form action="{{ route('fire_risk_data.destroy', $item) }}" method="POST" class="d-inline">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
+                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Está seguro de eliminar este registro?')">
+                                    <i class="fas fa-trash"></i>
+                                </button>
                             </form>
                         </td>
                     </tr>

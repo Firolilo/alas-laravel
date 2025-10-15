@@ -22,31 +22,40 @@
 
         <form action="{{ route('fire_risk_data.store') }}" method="POST">
             @csrf
+            
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
                         <label>Timestamp</label>
                         <div class="input-group">
                             <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fas fa-clock"></i></span>
+                                <span class="input-group-text">
+                                    <i class="fas fa-clock"></i>
+                                </span>
                             </div>
-                            <input type="datetime-local" class="form-control @error('timestamp') is-invalid @enderror" 
-                                   name="timestamp" value="{{ old('timestamp') }}" required>
+                            <input type="datetime-local" name="timestamp" 
+                                   class="form-control @error('timestamp') is-invalid @enderror" 
+                                   value="{{ old('timestamp') }}" required
+                                   placeholder="Seleccione fecha y hora">
                             @error('timestamp')
                                 <span class="invalid-feedback">{{ $message }}</span>
                             @enderror
                         </div>
                     </div>
                 </div>
+                
                 <div class="col-md-6">
                     <div class="form-group">
                         <label>Location</label>
                         <div class="input-group">
                             <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
+                                <span class="input-group-text">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </span>
                             </div>
-                            <input type="text" class="form-control @error('location') is-invalid @enderror" 
-                                   name="location" value="{{ old('location') }}" required 
+                            <input type="text" name="location"
+                                   class="form-control @error('location') is-invalid @enderror" 
+                                   value="{{ old('location') }}" required 
                                    placeholder="Ingrese la ubicación">
                             @error('location')
                                 <span class="invalid-feedback">{{ $message }}</span>
@@ -109,27 +118,78 @@
                 </div>
             </div>
 
-            <div class="row mb-3">
+            <div class="row">
                 <div class="col-md-4">
-                    <label class="form-label">Fire Risk</label>
-                    <input class="form-control" type="number" step="any" name="fire_risk" value="{{ old('fire_risk') }}" required>
+                    <div class="form-group">
+                        <label>Fire Risk</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <i class="fas fa-fire"></i>
+                                </span>
+                            </div>
+                            <input type="number" name="fire_risk" step="any"
+                                   class="form-control @error('fire_risk') is-invalid @enderror"
+                                   value="{{ old('fire_risk') }}" required
+                                   placeholder="Nivel de riesgo">
+                            @error('fire_risk')
+                                <span class="invalid-feedback">{{ $message }}</span>
+                            @enderror
+                        </div>
+                    </div>
                 </div>
+                
                 <div class="col-md-4">
-                    <label class="form-label">Fire Detected</label>
-                    <select class="form-select" name="fire_detected">
-                        <option value="0">No</option>
-                        <option value="1">Yes</option>
-                    </select>
+                    <div class="form-group">
+                        <label>Fire Detected</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <i class="fas fa-fire-extinguisher"></i>
+                                </span>
+                            </div>
+                            <select name="fire_detected" 
+                                    class="form-control select2 @error('fire_detected') is-invalid @enderror">
+                                <option value="0" {{ old('fire_detected') == '0' ? 'selected' : '' }}>No</option>
+                                <option value="1" {{ old('fire_detected') == '1' ? 'selected' : '' }}>Yes</option>
+                            </select>
+                            @error('fire_detected')
+                                <span class="invalid-feedback">{{ $message }}</span>
+                            @enderror
+                        </div>
+                    </div>
                 </div>
+                
                 <div class="col-md-4">
-                    <label class="form-label">Volunteer Name (opcional)</label>
-                    <input class="form-control" type="text" name="volunteer_name" value="{{ old('volunteer_name') }}">
+                    <div class="form-group">
+                        <label>Volunteer Name (opcional)</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <i class="fas fa-user-shield"></i>
+                                </span>
+                            </div>
+                            <input type="text" name="volunteer_name"
+                                   class="form-control @error('volunteer_name') is-invalid @enderror"
+                                   value="{{ old('volunteer_name') }}"
+                                   placeholder="Nombre del voluntario">
+                            @error('volunteer_name')
+                                <span class="invalid-feedback">{{ $message }}</span>
+                            @enderror
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <div class="d-flex gap-2">
-                <a class="btn btn-secondary" href="{{ route('fire_risk_data.index') }}">Cancelar</a>
-                <button type="submit" class="btn btn-primary">Crear</button>
+            <div class="row mt-4">
+                <div class="col-12">
+                    <a href="{{ route('fire_risk_data.index') }}" class="btn btn-secondary">
+                        <i class="fas fa-arrow-left mr-1"></i>Cancelar
+                    </a>
+                    <button type="submit" class="btn btn-primary float-right">
+                        <i class="fas fa-save mr-1"></i>Guardar
+                    </button>
+                </div>
             </div>
         </form>
     </div>
