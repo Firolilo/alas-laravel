@@ -14,13 +14,3 @@ Route::resource('users', UserController::class);
 Route::resource('fire_risk_data', FireRiskDataController::class);
 Route::resource('lugares', LugarController::class);
 Route::resource('biomasas', BiomasaController::class);
-
-// Datos (gráficas y métricas)
-Route::get('/datos', function () {
-    return view('admin.datos');
-})->name('datos.index');
-
-// Simulación (maquetación)
-Route::get('/simulacion', function () {
-    return view('admin.simulacion');
-})->name('simulacion.index');
