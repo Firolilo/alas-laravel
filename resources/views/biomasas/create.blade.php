@@ -36,7 +36,7 @@
                         <div class="col-12">
                             <div class="form-group">
                                 <label>Fecha de observación</label>
-                                <div class="input-group">
+                                <div class="input-group" style="max-width: 300px;">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
                                     </div>
