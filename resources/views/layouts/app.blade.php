@@ -33,10 +33,7 @@
             <li class="nav-item">
                 <a class="nav-link" data-widget="pushmenu" href="#" role="button" aria-label="Abrir menú lateral"><i class="fas fa-bars"></i></a>
             </li>
-            <!-- Marca del sistema -->
-            <li class="nav-item d-none d-sm-inline-block">
-                <span class="nav-link text-uppercase font-weight-bold" aria-label="Nombre de la aplicación">SIPII</span>
-            </li>
+            
             <!-- Ítems de navegación principales -->
             <li class="nav-item d-none d-sm-inline-block">
                 <a href="{{ url('/') }}" class="nav-link active" aria-current="page">Inicio</a>
@@ -48,7 +45,7 @@
                 <a href="{{ route('simulacion.index') }}" class="nav-link" aria-label="Simulación">Simulación</a>
             </li>
             <li class="nav-item d-none d-sm-inline-block">
-                <a href="#" class="nav-link" aria-label="Reporte">Reporte</a>
+                <a href="{{ route('biomasas.create') }}" class="nav-link" aria-label="Reporte">Reporte</a>
             </li>
             <li class="nav-item d-none d-sm-inline-block">
                 <a href="{{ route('users.index') }}" class="nav-link">Usuarios</a>
@@ -61,7 +58,7 @@
                 <span class="nav-link font-weight-bold text-uppercase" aria-label="Rol del usuario">ADMIN</span>
             </li>
             <li class="nav-item d-none d-sm-inline-block">
-                <a href="#" class="nav-link" tabindex="0" aria-label="Cerrar sesión">Cerrar sesión</a>
+                <a href="{{ route('login.index') }}" class="nav-link" tabindex="0" aria-label="Cerrar sesión">Cerrar sesión</a>
             </li>
         </ul>
     </nav>
@@ -72,38 +69,33 @@
         <!-- Brand Logo -->
         <a href="/" class="brand-link">
             <img src="https://adminlte.io/themes/v3/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-            <span class="brand-text font-weight-light">Mi Aplicación</span>
+            <span class="brand-text font-weight-light">SIPII</span>
         </a>
 
         <!-- Sidebar -->
         <div class="sidebar">
+            <!-- SidebarSearch Form -->
+            <div class="form-inline mt-2">
+                <div class="input-group" data-widget="sidebar-search">
+                    <input class="form-control form-control-sidebar" type="search" placeholder="Buscar" aria-label="Buscar">
+                    <div class="input-group-append">
+                        <button class="btn btn-sidebar">
+                            <i class="fas fa-search fa-fw"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
             <!-- Sidebar Menu -->
-            <nav class="mt-2">
+            <nav class="mt-3">
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                    <li class="nav-item">
-                        <a href="{{ route('users.index') }}" class="nav-link">
-                            <i class="nav-icon fas fa-users"></i>
-                            <p>Usuarios</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route('fire_risk_data.index') }}" class="nav-link">
-                            <i class="nav-icon fas fa-fire"></i>
-                            <p>Fire Risk Data</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route('lugares.index') }}" class="nav-link">
-                            <i class="nav-icon fas fa-map-marker-alt"></i>
-                            <p>Lugares</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route('biomasas.index') }}" class="nav-link">
-                            <i class="nav-icon fas fa-leaf"></i>
-                            <p>Biomasas</p>
-                        </a>
-                    </li>
+                    <li class="nav-header">ATAJOS</li>
+                    <li class="nav-item"><a href="{{ route('biomasas.create') }}" class="nav-link"><i class="nav-icon fas fa-plus"></i><p>Nuevo reporte biomasa</p></a></li>
+                    <li class="nav-item"><a href="{{ route('simulacion.index') }}" class="nav-link"><i class="nav-icon fas fa-play"></i><p>Nueva simulación</p></a></li>
+                    <li class="nav-item"><a href="{{ route('users.create') }}" class="nav-link"><i class="nav-icon fas fa-user-plus"></i><p>Añadir usuario</p></a></li>
+
+                    <li class="nav-header">AYUDA</li>
+                    <li class="nav-item"><a href="{{ route('guia.index') }}" class="nav-link"><i class="nav-icon fas fa-question-circle"></i><p>Guía rápida</p></a></li>
                 </ul>
             </nav>
             <!-- /.sidebar-menu -->

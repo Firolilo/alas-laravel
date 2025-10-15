@@ -1,73 +1,109 @@
 @extends('layouts.app')
 
-@section('title', 'Usuarios')
+@section('title', 'Gestión de Usuarios')
 
 @section('content')
-<div class="card">
-    <div class="card-header">
-        <h3 class="card-title">
-            <i class="fas fa-users mr-2"></i>Usuarios
-        </h3>
-        <div class="card-tools">
-            <a href="{{ route('users.create') }}" class="btn btn-primary">
-                <i class="fas fa-plus mr-1"></i>Nuevo Usuario
-            </a>
-        </div>
+<!-- Encabezado + buscador -->
+<div class="card card-outline card-primary mb-3">
+    <div class="card-header text-center">
+        <h3 class="card-title mb-0"><i class="fas fa-users mr-2"></i>Gestión de Usuarios</h3>
     </div>
     <div class="card-body">
-        @if(session('success'))
-            <div class="alert alert-success alert-dismissible">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                <h5><i class="icon fas fa-check"></i> ¡Éxito!</h5>
-                {{ session('success') }}
+        <div class="input-group" style="max-width: 900px; margin: 0 auto;">
+            <input type="text" class="form-control" placeholder="Buscar por nombre, apellido o CI..." aria-label="Buscar usuarios">
+            <div class="input-group-append">
+                <button class="btn btn-default" type="button">Limpiar</button>
             </div>
-        @endif
-
-        <div class="table-responsive">
-            <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Apellido</th>
-                    <th>Email</th>
-                    <th>CI</th>
-                    <th>Telefono</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($users as $user)
-                    <tr>
-                        <td>{{ $user->id }}</td>
-                        <td>{{ $user->nombre }}</td>
-                        <td>{{ $user->apellido }}</td>
-                        <td>{{ $user->email }}</td>
-                        <td>{{ $user->ci }}</td>
-                        <td>{{ $user->telefono }}</td>
-                        <td>
-                            <a href="{{ route('users.show', $user) }}" class="btn btn-info btn-sm">
-                                <i class="fas fa-eye"></i>
-                            </a>
-                            <a href="{{ route('users.edit', $user) }}" class="btn btn-warning btn-sm">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                            <form action="{{ route('users.destroy', $user) }}" method="POST" class="d-inline">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Está seguro de eliminar este usuario?')">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </form>
-                        </td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
-
-        <div class="mt-3">
-            {{ $users->links() }}
         </div>
     </div>
+</div>
+
+<!-- Tarjetas de estado -->
+<div class="row">
+    <div class="col-lg-4 col-12">
+        <div class="card">
+            <div class="card-header d-flex align-items-center">
+                <span class="badge badge-success mr-2" style="width: 12px; height: 12px; border-radius: 50%;"></span>
+                <h3 class="card-title mb-0">Activos (2)</h3>
+            </div>
+            <div class="card-body">
+                <div class="border-top mb-3" style="border-color:#28a745 !important"></div>
+                <div class="card bg-light mb-3">
+                    <div class="card-body">
+                        <strong class="d-block">Bruno Fiorilo</strong>
+                        <div class="text-muted small">CI: 12418043</div>
+                        <div class="text-muted small mb-2">Estado: Activo</div>
+                        <button class="btn btn-sm btn-default">Eliminar</button>
+                    </div>
+                </div>
+                <div class="card bg-light mb-0">
+                    <div class="card-body">
+                        <strong class="d-block">María Pérez</strong>
+                        <div class="text-muted small">CI: 7845123</div>
+                        <div class="text-muted small mb-2">Estado: Activo</div>
+                        <button class="btn btn-sm btn-default">Eliminar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-12">
+        <div class="card">
+            <div class="card-header d-flex align-items-center">
+                <span class="badge badge-warning mr-2" style="width: 12px; height: 12px; border-radius: 50%;"></span>
+                <h3 class="card-title mb-0">Pendientes (1)</h3>
+            </div>
+            <div class="card-body">
+                <div class="border-top mb-3" style="border-color:#fd7e14 !important"></div>
+                <div class="card bg-light mb-0">
+                    <div class="card-body">
+                        <strong class="d-block">Carlos Gómez</strong>
+                        <div class="text-muted small">CI: 9988776</div>
+                        <div class="text-muted small">Estado: Pendiente</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-12">
+        <div class="card">
+            <div class="card-header d-flex align-items-center">
+                <span class="badge badge-danger mr-2" style="width: 12px; height: 12px; border-radius: 50%;"></span>
+                <h3 class="card-title mb-0">Inactivos (1)</h3>
+            </div>
+            <div class="card-body">
+                <div class="border-top mb-3" style="border-color:#dc3545 !important"></div>
+                <div class="card bg-light mb-0">
+                    <div class="card-body">
+                        <strong class="d-block">Lucía Rojas</strong>
+                        <div class="text-muted small">CI: 5566778</div>
+                        <div class="text-muted small">Estado: Inactivo</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Sección admins -->
+<div class="card card-outline card-info mt-2">
+    <div class="card-header">
+        <h3 class="card-title mb-0"><i class="fas fa-shield-alt mr-2"></i>Admins (1)</h3>
+    </div>
+    <div class="card-body">
+        <div class="card mb-0">
+            <div class="card-body">
+                <strong>ADMIN SISTEMA</strong>
+                <div class="text-muted small">CI: 0000000</div>
+                <div class="text-muted small">Estado: Activo</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Botón agregar usuario -->
+<div class="text-center mt-3">
+    <a href="{{ route('users.create') }}" class="btn btn-dark"><i class="fas fa-plus mr-1"></i> Añadir nuevo usuario</a>
+    
 </div>
 @endsection
